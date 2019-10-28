@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace ElasticClient;
 
-
 use Elasticsearch\Client;
 use Orchestra\Testbench\TestCase;
 
@@ -12,14 +11,6 @@ use Orchestra\Testbench\TestCase;
  */
 class ServiceProviderTest extends TestCase
 {
-    /**
-     * @inheritDoc
-     */
-    protected function getEnvironmentSetUp($app)
-    {
-        $app['config']->set('elastic.client.hosts', ['foo:9200']);
-    }
-
     public function test_client_is_registered(): void
     {
         (new ServiceProvider($this->app))->register();
@@ -28,7 +19,7 @@ class ServiceProviderTest extends TestCase
         $connection = $client->transport->getConnection();
 
         $this->assertInstanceOf(Client::class, $client);
-        $this->assertSame('foo', $connection->getHost());
+        $this->assertSame('localhost', $connection->getHost());
         $this->assertSame(9200, $connection->getPort());
     }
 

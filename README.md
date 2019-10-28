@@ -51,20 +51,13 @@ use Illuminate\Console\Command;
 
 class CreateIndex extends Command
 {
-    private $client;
-
     protected $signature = 'create:index {name}';
 
     protected $description = 'Creates an index';
 
-    public function __construct(Client $client)
+    public function handle(Client $client)
     {
-        $this->client = $client;
-    }
-
-    public function handle()
-    {
-        $this->client->indices->exists([
+        $client->indices()->create([
             'index' => $this->argument('name')
         ]);
     }

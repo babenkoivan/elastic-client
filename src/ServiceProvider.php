@@ -10,10 +10,30 @@ use Illuminate\Support\ServiceProvider as AbstractServiceProvider;
 final class ServiceProvider extends AbstractServiceProvider
 {
     /**
+     * @var string
+     */
+    private $configPath;
+
+    /**
+     * @inheritDoc
+     */
+    public function __construct($app)
+    {
+        parent::__construct($app);
+
+        $this->configPath = realpath(__DIR__ . '/../config/elastic.client.php');
+    }
+
+    /**
      * @inheritDoc
      */
     public function register()
     {
+        $this->mergeConfigFrom(
+            $this->configPath,
+            basename($this->configPath, '.php')
+        );
+
         $this->app->singleton(Client::class, function () {
             $config = config('elastic.client');
 
@@ -27,7 +47,7 @@ final class ServiceProvider extends AbstractServiceProvider
     public function boot()
     {
         $this->publishes([
-            realpath(__DIR__ . '/../config/elastic.client.php') => config_path('elastic.client.php')
+            $this->configPath => config_path(basename($this->configPath))
         ]);
     }
 }
