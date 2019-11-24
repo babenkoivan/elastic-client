@@ -15,7 +15,7 @@ final class ServiceProvider extends AbstractServiceProvider
     private $configPath;
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function __construct($app)
     {
@@ -25,7 +25,7 @@ final class ServiceProvider extends AbstractServiceProvider
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function register()
     {
@@ -41,9 +41,6 @@ final class ServiceProvider extends AbstractServiceProvider
         });
     }
 
-    /**
-     * @inheritDoc
-     */
     public function boot()
     {
         $this->publishes([
