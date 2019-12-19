@@ -4,7 +4,7 @@
 
 ---
 
-This is an integration of official PHP Elasticsearch client with Laravel.
+The official PHP Elasticsearch client integrated with Laravel.
 
 ## Contents
 
@@ -14,7 +14,7 @@ This is an integration of official PHP Elasticsearch client with Laravel.
 
 ## Installation
 
-You can install the library using composer:
+The library can be installed via Composer:
 
 ```bash
 composer require babenkoivan/elastic-client
@@ -22,7 +22,7 @@ composer require babenkoivan/elastic-client
 
 ## Configuration
 
-You can create configuration file using artisan publish command:
+To change the client settings you need to publish the configuration file first:
 
 ```bash
 php artisan vendor:publish --provider="ElasticClient\ServiceProvider"
@@ -41,7 +41,7 @@ return [
 
 ## Usage
 
-You can type hint `\Elasticsearch\Client` or use `resolve` function to retrieve the client instance:
+Type hint `\Elasticsearch\Client` or use `resolve` function to retrieve the client instance in your code:
 
 ```php
 namespace App\Console\Commands;
