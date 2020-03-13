@@ -1,6 +1,13 @@
 {
     "name": "babenkoivan/elastic-client",
     "description": "The official PHP Elasticsearch client integrated with Laravel",
+    "keywords": [
+        "laravel",
+        "elastic",
+        "elasticsearch",
+        "client",
+        "php"
+    ],
     "type": "library",
     "license": "MIT",
     "authors": [

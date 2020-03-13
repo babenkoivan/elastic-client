@@ -30,7 +30,7 @@ php artisan vendor:publish --provider="ElasticClient\ServiceProvider"
 ```
 
 You can use any settings supported by [\Elasticsearch\ClientBuilder::fromConfig](https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/configuration.html#_building_the_client_from_a_configuration_hash)
-in the `config/elastic.client.php` file as this factory is used under the hood:
+method in the `config/elastic.client.php` file as this factory is used under the hood:
 
 ```php
 return [
