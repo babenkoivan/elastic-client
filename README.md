@@ -1,6 +1,6 @@
 # Elastic Client
 
-[![Build Status](https://travis-ci.com/babenkoivan/elastic-client.svg?token=tL2AyZUSS9biRsKPg7fp&branch=master)](https://travis-ci.com/babenkoivan/elastic-client)
+[![Build Status](https://travis-ci.com/babenkoivan/elastic-client.svg?branch=master)](https://travis-ci.com/babenkoivan/elastic-client)
 [![WIP](https://img.shields.io/static/v1?label=WIP&message=work%20in%20progress&color=red)](#)
 
 ---
