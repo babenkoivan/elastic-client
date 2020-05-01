@@ -1,7 +1,11 @@
 # Elastic Client
 
+[![Latest Stable Version](https://poser.pugx.org/babenkoivan/elastic-client/v/stable)](https://packagist.org/packages/babenkoivan/elastic-client)
+[![Total Downloads](https://poser.pugx.org/babenkoivan/elastic-client/downloads)](https://packagist.org/packages/babenkoivan/elastic-client)
+[![License](https://poser.pugx.org/babenkoivan/elastic-client/license)](https://packagist.org/packages/babenkoivan/elastic-client)
 [![Build Status](https://travis-ci.com/babenkoivan/elastic-client.svg?branch=master)](https://travis-ci.com/babenkoivan/elastic-client)
-[![WIP](https://img.shields.io/static/v1?label=WIP&message=work%20in%20progress&color=red)](#)
+[![Donate PayPal](https://img.shields.io/badge/donate-paypal-blue)](https://paypal.me/babenkoi)
+[![Donate Amazon](https://img.shields.io/badge/donate-amazon-black)](https://www.amazon.de/Amazon-de-e-Gift-Voucher-Various-Designs/dp/B07Q1JNC7R)
 
 ---
 
