@@ -27,6 +27,7 @@
         }
     },
     "require": {
+        "php": "^7.2",
         "elasticsearch/elasticsearch": "^7.3"
     },
     "require-dev": {
