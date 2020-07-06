@@ -1,5 +1,4 @@
-<?php
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace ElasticClient;
 
@@ -34,7 +33,7 @@ final class ServiceProvider extends AbstractServiceProvider
             basename($this->configPath, '.php')
         );
 
-        $this->app->singleton(Client::class, function () {
+        $this->app->singleton(Client::class, static function () {
             $config = config('elastic.client');
 
             return ClientBuilder::fromConfig($config);
@@ -44,7 +43,7 @@ final class ServiceProvider extends AbstractServiceProvider
     public function boot()
     {
         $this->publishes([
-            $this->configPath => config_path(basename($this->configPath))
+            $this->configPath => config_path(basename($this->configPath)),
         ]);
     }
 }
