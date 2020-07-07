@@ -20,7 +20,7 @@ final class ServiceProvider extends AbstractServiceProvider
     {
         parent::__construct($app);
 
-        $this->configPath = realpath(__DIR__ . '/../config/elastic.client.php');
+        $this->configPath = dirname(__DIR__) . '/config/elastic.client.php';
     }
 
     /**
@@ -40,6 +40,9 @@ final class ServiceProvider extends AbstractServiceProvider
         });
     }
 
+    /**
+     * @return void
+     */
     public function boot()
     {
         $this->publishes([

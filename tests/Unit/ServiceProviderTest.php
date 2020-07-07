@@ -22,13 +22,13 @@ class ServiceProviderTest extends TestCase
         $this->assertSame(9200, $connection->getPort());
     }
 
-    public function test_configuration_is_published(): void
+    public function test_configuration_can_be_published(): void
     {
         (new ServiceProvider($this->app))->boot();
 
         $publishes = ServiceProvider::$publishes[ServiceProvider::class];
 
-        $publishFrom = realpath(__DIR__ . '/../../config/elastic.client.php');
+        $publishFrom = dirname(__DIR__, 2) . '/config/elastic.client.php';
         $publishTo = config_path('elastic.client.php');
 
         $this->assertArrayHasKey($publishFrom, $publishes);
