@@ -24,12 +24,15 @@ stages:
 jobs:
   include:
     - stage: code-analysis
+      name: Code Style Check
+      php: 7.3
+      env: TESTBENCH_VERSION=^5.0
       script: make style-check
-      php: 7.3
-      env: TESTBENCH_VERSION=^5.0
     - stage: code-analysis
-      script: make static-analysis
+      name: Static Code Analysis
       php: 7.3
       env: TESTBENCH_VERSION=^5.0
+      script: make static-analysis
     - stage: test
+      name: Tests
       script: make test
