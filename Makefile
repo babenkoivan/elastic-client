@@ -1,4 +1,4 @@
-.PHONY: test coverage code-style-check static-code-analysis help
+.PHONY: test coverage style-check static-analysis help
 
 .DEFAULT_GOAL := help
 
