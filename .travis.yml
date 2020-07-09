@@ -2,6 +2,10 @@ cache:
   directories:
     - $HOME/.composer/cache
 
+stages:
+  - code-analysis
+  - test
+
 language: php
 
 php:
@@ -17,9 +21,7 @@ install:
   - composer global require --no-interaction --prefer-dist --update-no-dev hirak/prestissimo
   - composer require --no-interaction --prefer-dist orchestra/testbench:$TESTBENCH_VERSION
 
-stages:
-  - code-analysis
-  - test
+script: make test
 
 jobs:
   include:
@@ -33,5 +35,3 @@ jobs:
       php: 7.2
       env: TESTBENCH_VERSION=^5.0
       script: make static-analysis
-    - stage: test
-      script: make test
