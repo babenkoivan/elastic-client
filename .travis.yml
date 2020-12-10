@@ -27,6 +27,9 @@ before_script:
 script: make test
 
 jobs:
+  exclude:
+    - php: 7.2
+      env: TESTBENCH_VERSION=^6.0
   include:
     - stage: code-analysis
       name: Code Style Check
