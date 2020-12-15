@@ -52,6 +52,42 @@ return [
 ];
 ``` 
 
+### Auth Configuration
+
+You can custom header of elastic client request by add params to the config php file like : 
+
+```php
+return [
+    'hosts' => [
+        env('ELASTIC_HOST', 'localhost:9200'),
+    ],
+    "connectionParams" => [
+        'client' => [
+            "headers" => [
+            ]
+        ]
+    ]
+];
+```
+
+For specify basic bearer authentification you can use 
+
+
+```php
+return [
+    'hosts' => [
+        env('ELASTIC_HOST', 'localhost:9200'),
+    ],
+    "connectionParams" => [
+        'client' => [
+            "headers" => [
+            'Authorization' => ["Basic {username:password}"]
+            ]
+        ]
+    ]
+];
+```
+
 ## Usage
 
 Type hint `\Elasticsearch\Client` or use `resolve` function to retrieve the client instance in your code:
