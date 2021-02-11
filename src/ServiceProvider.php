@@ -74,7 +74,10 @@ final class ServiceProvider extends AbstractServiceProvider
         ]);
     }
 
-    protected function buildClientFromConfig(array $config)
+    /**
+     * @return Client
+     */
+    protected function buildClientFromConfig(array $config): Client
     {
         $clientBuilder = ClientBuilder::create();
 
