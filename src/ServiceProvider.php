@@ -78,11 +78,11 @@ final class ServiceProvider extends AbstractServiceProvider
     {
         $clientBuilder = ClientBuilder::create();
 
-        $clientBuilder->setHosts($connection['hosts']);
+        $clientBuilder->setHosts($config['hosts']);
 
         // Set additional client configuration
         foreach ($this->configMappings as $key => $method) {
-            $value = Arr::get($connection, $key);
+            $value = Arr::get($config, $key);
 
             if (is_array($value)) {
                 foreach ($value as $vItem) {
@@ -95,7 +95,7 @@ final class ServiceProvider extends AbstractServiceProvider
 
         // For each host, check if it uses AWS configuration and try to set a handler
         // to authenticate through the V4 Signature before hitting the API.
-        foreach ($connection['hosts'] as $host) {
+        foreach ($config['hosts'] as $host) {
             if (isset($host['aws_enable']) && $host['aws_enable']) {
                 $clientBuilder->setHandler(function (array $request) use ($host) {
                     $psr7Handler = \Aws\default_http_handler();
