@@ -38,7 +38,9 @@
     },
     "require": {
         "php": "^7.2",
+        "aws/aws-sdk-php": "^3.132",
         "elasticsearch/elasticsearch": "^7.3",
+        "guzzlehttp/guzzle": "^6.5|7.0",
         "illuminate/support": "^6.0|^7.0|^8.0"
     },
     "require-dev": {
