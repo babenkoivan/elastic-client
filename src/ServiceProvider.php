@@ -100,7 +100,7 @@ final class ServiceProvider extends AbstractServiceProvider
         // to authenticate through the V4 Signature before hitting the API.
         foreach ($config['hosts'] as $host) {
             if (isset($host['aws_enable']) && $host['aws_enable']) {
-                $clientBuilder->setHandler(function (array $request) use ($host) {
+                $clientBuilder->setHandler(static function (array $request) use ($host) {
                     $psr7Handler = \Aws\default_http_handler();
                     $signer = new SignatureV4('es', $host['aws_region']);
 
@@ -120,9 +120,9 @@ final class ServiceProvider extends AbstractServiceProvider
 
                     // Send the signed request to Amazon ES.
                     /** @var \Psr\Http\Message\ResponseInterface $response */
-                    $response = $psr7Handler($signedRequest)->then(function (\Psr\Http\Message\ResponseInterface $response) {
+                    $response = $psr7Handler($signedRequest)->then(static function (\Psr\Http\Message\ResponseInterface $response) {
                         return $response;
-                    }, function ($error) {
+                    }, static function ($error) {
                         return $error['response'];
                     })->wait();
 
