@@ -57,7 +57,7 @@ final class ServiceProvider extends AbstractServiceProvider
             basename($this->configPath, '.php')
         );
 
-        $this->app->singleton(Client::class, static function () {
+        $this->app->singleton(Client::class, function () {
             $config = config('elastic.client');
 
             return $this->buildClientFromConfig($config);
