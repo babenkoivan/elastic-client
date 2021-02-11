@@ -18,7 +18,7 @@ class ServiceProviderTest extends TestCase
         $connection = $client->transport->getConnection();
 
         $this->assertInstanceOf(Client::class, $client);
-        $this->assertSame('localhost', $connection->getHost());
+        $this->assertSame('127.0.0.1', $connection->getHost());
         $this->assertSame(9200, $connection->getPort());
     }
 
