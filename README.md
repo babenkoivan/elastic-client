@@ -46,8 +46,8 @@ To change the client settings you need to publish the configuration file first:
 php artisan vendor:publish --provider="ElasticClient\ServiceProvider"
 ```
 
-You can use any settings supported by [\Elasticsearch\ClientBuilder::fromConfig](https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/configuration.html#_building_the_client_from_a_configuration_hash)
-method in the `config/elastic.client.php` file as this factory is used under the hood:
+Then you can adjust the configuration hash in `config/elastic.client.php` file. Note, that you can provide any 
+settings supported by [\Elasticsearch\ClientBuilder::fromConfig()](https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/endpoint-closure.html#config-hash):
 
 ```php
 return [
@@ -56,6 +56,34 @@ return [
     ]
 ];
 ``` 
+
+If you want to connect to AWS Elasticsearch, you can configure a handler, which would sign requests with AWS credentials. 
+For example, you can install [renoki-co/aws-elastic-client](https://github.com/renoki-co/aws-elastic-client) package and 
+adjust the configuration file as follows:
+
+```php
+return [
+
+    'hosts' => [
+        [
+            'host' => env('ELASTIC_HOST', '127.0.0.1'),
+            'port' => env('ELASTIC_PORT', 9200),
+            // the rest of ES configuration goes here...
+        ],
+
+        // ...
+    ],
+
+    'handler' => new \RenokiCo\AwsElasticHandler\AwsHandler([
+        'enabled' => env('AWS_ELASTICSEARCH_ENABLED', false),
+        'aws_access_key_id' => env('AWS_ACCESS_KEY_ID'),
+        'aws_secret_access_key' => env('AWS_SECRET_ACCESS_KEY'),
+        'aws_region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
+        'aws_session_token' => env('AWS_SESSION_TOKEN'), // optional
+    ]),
+
+];
+```
 
 ## Usage
 
