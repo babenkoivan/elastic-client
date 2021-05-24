@@ -59,30 +59,28 @@ return [
 
 If you want to connect to AWS Elasticsearch, you can configure a handler, which would sign requests with AWS credentials. 
 For example, you can install [renoki-co/aws-elastic-client](https://github.com/renoki-co/aws-elastic-client) package and 
-adjust the configuration file as follows:
+reconfigure Elastic Client in `AppServiceProvider::register()` as follows:
 
 ```php
-return [
+class AppServiceProvider extends ServiceProvider
+{
+    public function register()
+    {
+        $this->app->singleton(\Elasticsearch\Client::class, static function () {
+            $config = config('elastic.client');
 
-    'hosts' => [
-        [
-            'host' => env('ELASTIC_HOST', '127.0.0.1'),
-            'port' => env('ELASTIC_PORT', 9200),
-            // the rest of ES configuration goes here...
-        ],
+            $config['handler'] = new \RenokiCo\AwsElasticHandler\AwsHandler([
+                'enabled' => env('AWS_ELASTICSEARCH_ENABLED', false),
+                'aws_access_key_id' => env('AWS_ACCESS_KEY_ID'),
+                'aws_secret_access_key' => env('AWS_SECRET_ACCESS_KEY'),
+                'aws_region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
+                'aws_session_token' => env('AWS_SESSION_TOKEN'), // optional
+            ]);
 
-        // ...
-    ],
-
-    'handler' => new \RenokiCo\AwsElasticHandler\AwsHandler([
-        'enabled' => env('AWS_ELASTICSEARCH_ENABLED', false),
-        'aws_access_key_id' => env('AWS_ACCESS_KEY_ID'),
-        'aws_secret_access_key' => env('AWS_SECRET_ACCESS_KEY'),
-        'aws_region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
-        'aws_session_token' => env('AWS_SESSION_TOKEN'), // optional
-    ]),
-
-];
+            return \Elasticsearch\ClientBuilder::fromConfig($config);
+        });
+    }
+}
 ```
 
 ## Usage
