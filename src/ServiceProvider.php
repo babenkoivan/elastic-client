@@ -2,16 +2,11 @@
 
 namespace ElasticClient;
 
-use Elasticsearch\Client;
-use Elasticsearch\ClientBuilder;
 use Illuminate\Support\ServiceProvider as AbstractServiceProvider;
 
 final class ServiceProvider extends AbstractServiceProvider
 {
-    /**
-     * @var string
-     */
-    private $configPath;
+    private string $configPath;
 
     /**
      * {@inheritDoc}
@@ -33,11 +28,7 @@ final class ServiceProvider extends AbstractServiceProvider
             basename($this->configPath, '.php')
         );
 
-        $this->app->singleton(Client::class, static function () {
-            $config = config('elastic.client');
-
-            return ClientBuilder::fromConfig($config);
-        });
+        $this->app->singletonIf(ClientBuilderInterface::class, ClientBuilder::class);
     }
 
     /**

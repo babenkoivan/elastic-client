@@ -37,14 +37,14 @@
         }
     },
     "require": {
-        "php": "^7.2 || ^8.0",
-        "elasticsearch/elasticsearch": "^7.3"
+        "php": "^7.4 || ^8.0",
+        "elasticsearch/elasticsearch": "^8.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",
-        "orchestra/testbench": "^6.12",
-        "friendsofphp/php-cs-fixer": "^2.16",
-        "phpstan/phpstan": "^0.12.32"
+        "orchestra/testbench": "^7.5",
+        "friendsofphp/php-cs-fixer": "^3.8",
+        "phpstan/phpstan": "^1.6"
     },
     "config": {
         "bin-dir": "bin"

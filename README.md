@@ -27,8 +27,8 @@ The official PHP Elasticsearch client integrated with Laravel.
 
 The current version of Elastic Client has been tested with the following configuration:
 
-* PHP 7.2-8.0
-* Elasticsearch 7.x
+* PHP 7.4-8.x
+* Elasticsearch 7.x-8.x 
 
 ## Installation
 
@@ -46,51 +46,31 @@ To change the client settings you need to publish the configuration file first:
 php artisan vendor:publish --provider="ElasticClient\ServiceProvider"
 ```
 
-Then you can adjust the configuration hash in `config/elastic.client.php` file. Note, that you can provide any 
-settings supported by [\Elasticsearch\ClientBuilder::fromConfig()](https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/endpoint-closure.html#config-hash):
+In the newly created `config/elastic.client.php` file you can define the default connection name and describe multiple 
+connections using configuration hashes. You can read more about building the client from a configuration hash [here](https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/node_pool.html#config-hash).
 
 ```php
 return [
-    'hosts' => [
-        env('ELASTIC_HOST', 'localhost:9200'),
-    ]
+    'default' => env('ELASTIC_CONNECTION', 'default'),
+    'connections' => [
+        'default' => [
+            'hosts' => [
+                env('ELASTIC_HOST', 'localhost:9200'),
+            ],
+        ],
+    ],
 ];
-``` 
-
-If you want to connect to AWS Elasticsearch, you can configure a handler, which would sign requests with AWS credentials. 
-For example, you can install [renoki-co/aws-elastic-client](https://github.com/renoki-co/aws-elastic-client) package and 
-reconfigure Elastic Client in `AppServiceProvider::register()` as follows:
-
-```php
-class AppServiceProvider extends ServiceProvider
-{
-    public function register()
-    {
-        $this->app->singleton(\Elasticsearch\Client::class, static function () {
-            $config = config('elastic.client');
-
-            $config['handler'] = new \RenokiCo\AwsElasticHandler\AwsHandler([
-                'enabled' => env('AWS_ELASTICSEARCH_ENABLED', false),
-                'aws_access_key_id' => env('AWS_ACCESS_KEY_ID'),
-                'aws_secret_access_key' => env('AWS_SECRET_ACCESS_KEY'),
-                'aws_region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
-                'aws_session_token' => env('AWS_SESSION_TOKEN'), // optional
-            ]);
-
-            return \Elasticsearch\ClientBuilder::fromConfig($config);
-        });
-    }
-}
 ```
 
 ## Usage
 
-Type hint `\Elasticsearch\Client` or use `resolve` function to retrieve the client instance in your code:
+Use `ElasticClient\ClientBuilderInterface` to get access to the client instance:
 
 ```php
 namespace App\Console\Commands;
 
-use Elasticsearch\Client;
+use Elastic\Elasticsearch\Client;
+use ElasticClient\ClientBuilderInterface;
 use Illuminate\Console\Command;
 
 class CreateIndex extends Command
@@ -99,8 +79,13 @@ class CreateIndex extends Command
 
     protected $description = 'Creates an index';
 
-    public function handle(Client $client)
+    public function handle(ClientBuilderInterface $clientBuilder)
     {
+        // get a client for the default connection
+        $client = $clientBuilder->default();
+        // get a client for the connection with name "write"
+        $client = $clientBuilder->connection('write');
+    
         $client->indices()->create([
             'index' => $this->argument('name')
         ]);
