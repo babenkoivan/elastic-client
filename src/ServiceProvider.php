@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace ElasticClient;
+namespace Elastic\Client;
 
 use Illuminate\Support\ServiceProvider as AbstractServiceProvider;
 

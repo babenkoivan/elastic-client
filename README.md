@@ -43,7 +43,7 @@ composer require babenkoivan/elastic-client
 To change the client settings you need to publish the configuration file first:
 
 ```bash
-php artisan vendor:publish --provider="ElasticClient\ServiceProvider"
+php artisan vendor:publish --provider="Elastic\Client\ServiceProvider"
 ```
 
 In the newly created `config/elastic.client.php` file you can define the default connection name and describe multiple 
@@ -64,13 +64,13 @@ return [
 
 ## Usage
 
-Use `ElasticClient\ClientBuilderInterface` to get access to the client instance:
+Use `Elastic\Client\ClientBuilderInterface` to get access to the client instance:
 
 ```php
 namespace App\Console\Commands;
 
 use Elastic\Elasticsearch\Client;
-use ElasticClient\ClientBuilderInterface;
+use Elastic\Client\ClientBuilderInterface;
 use Illuminate\Console\Command;
 
 class CreateIndex extends Command

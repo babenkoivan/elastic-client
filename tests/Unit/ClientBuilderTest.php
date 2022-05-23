@@ -1,14 +1,14 @@
 <?php declare(strict_types=1);
 
-namespace ElasticClient\Tests\Unit;
+namespace Elastic\Client\Tests\Unit;
 
+use Elastic\Client\ClientBuilder;
 use Elastic\Elasticsearch\Client;
-use ElasticClient\ClientBuilder;
 use ErrorException;
 use Orchestra\Testbench\TestCase;
 
 /**
- * @covers \ElasticClient\ClientBuilder
+ * @covers \Elastic\Client\ClientBuilder
  */
 final class ClientBuilderTest extends TestCase
 {
