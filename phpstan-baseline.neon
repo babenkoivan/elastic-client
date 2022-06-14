@@ -1,6 +1,0 @@
-parameters:
-	ignoreErrors:
-		-
-			message: "#^Cannot call method set\\(\\) on mixed\\.$#"
-			count: 1
-			path: tests/Unit/ClientBuilderTest.php
