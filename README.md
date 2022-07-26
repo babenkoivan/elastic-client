@@ -62,6 +62,36 @@ return [
 ];
 ```
 
+If you need more control over the client creation, you can create your own client builder:
+
+```php
+// see Elastic\Client\ClientBuilder for the reference
+class MyClientBuilder implements Elastic\Client\ClientBuilderInterface
+{
+    public function default(): Client
+    {
+        // should return a client instance for the default connection 
+    }
+    
+    public function connection(string $name): Client
+    {
+        // should return a client instance for the connection with the given name 
+    }
+}
+```
+
+Do not forget to register the builder in your application provider:
+
+```php
+class MyAppProvider extends Illuminate\Support\ServiceProvider
+{
+    public function register()
+    {
+        $this->app->singleton(ClientBuilderInterface::class, MyClientBuilder::class);
+    }
+}
+```
+
 ## Usage
 
 Use `Elastic\Client\ClientBuilderInterface` to get access to the client instance:
