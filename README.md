@@ -80,10 +80,10 @@ class MyClientBuilder implements Elastic\Client\ClientBuilderInterface
 }
 ```
 
-Do not forget to register the builder in your application provider:
+Do not forget to register the builder in your application service provider:
 
 ```php
-class MyAppProvider extends Illuminate\Support\ServiceProvider
+class MyAppServiceProvider extends Illuminate\Support\ServiceProvider
 {
     public function register()
     {
