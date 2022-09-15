@@ -57,6 +57,10 @@ return [
             'hosts' => [
                 env('ELASTIC_HOST', 'localhost:9200'),
             ],
+            // you can also set HTTP client options (which is Guzzle by default) as follows
+            'httpClientOptions' => [
+                'timeout' => 2,
+            ],
         ],
     ],
 ];
