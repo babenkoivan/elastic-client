@@ -29,6 +29,7 @@ The current version of Elastic Client has been tested with the following configu
 
 * PHP 7.4-8.x
 * Elasticsearch 8.x 
+* Laravel 6.x-10.x
 
 ## Installation
 
