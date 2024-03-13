@@ -3,7 +3,7 @@
 namespace Elastic\Client\Tests\Unit;
 
 use Elastic\Client\ClientBuilder;
-use Elastic\Elasticsearch\Client;
+use Elastic\Elasticsearch\ClientInterface;
 use ErrorException;
 use Orchestra\Testbench\TestCase;
 
@@ -51,7 +51,7 @@ final class ClientBuilderTest extends TestCase
         $this->clientBuilder->connection('foo');
     }
 
-    private function assertHost(Client $client, string $host): void
+    private function assertHost(ClientInterface $client, string $host): void
     {
         $transport = $client->getTransport();
         $node = $transport->getNodePool()->nextNode();

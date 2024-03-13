@@ -2,7 +2,7 @@
 
 namespace Elastic\Client;
 
-use Elastic\Elasticsearch\Client;
+use Elastic\Elasticsearch\ClientInterface;
 use Elastic\Elasticsearch\ClientBuilder as BaseClientBuilder;
 use ErrorException;
 
@@ -10,7 +10,7 @@ class ClientBuilder implements ClientBuilderInterface
 {
     protected array $cache;
 
-    public function default(): Client
+    public function default(): ClientInterface
     {
         $name = config('elastic.client.default');
 
@@ -21,7 +21,7 @@ class ClientBuilder implements ClientBuilderInterface
         return $this->connection($name);
     }
 
-    public function connection(string $name): Client
+    public function connection(string $name): ClientInterface
     {
         if (isset($this->cache[$name])) {
             return $this->cache[$name];

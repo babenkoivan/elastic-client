@@ -75,15 +75,17 @@ return [
 If you need more control over the client creation, you can create your own client builder:
 
 ```php
-// see Elastic\Client\ClientBuilder for the reference
-class MyClientBuilder implements Elastic\Client\ClientBuilderInterface
+use Elastic\Elasticsearch\ClientInterface;
+use Elastic\Client\ClientBuilderInterface;
+
+class MyClientBuilder implements ClientBuilderInterface
 {
-    public function default(): Client
+    public function default(): ClientInterface
     {
         // should return a client instance for the default connection 
     }
     
-    public function connection(string $name): Client
+    public function connection(string $name): ClientInterface
     {
         // should return a client instance for the connection with the given name 
     }
@@ -109,7 +111,7 @@ Use `Elastic\Client\ClientBuilderInterface` to get access to the client instance
 ```php
 namespace App\Console\Commands;
 
-use Elastic\Elasticsearch\Client;
+use Elastic\Elasticsearch\ClientInterface;
 use Elastic\Client\ClientBuilderInterface;
 use Illuminate\Console\Command;
 
