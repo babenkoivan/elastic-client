@@ -2,11 +2,11 @@
 
 namespace Elastic\Client;
 
-use Elastic\Elasticsearch\ClientInterface;
+use Elastic\Elasticsearch\Client;
 
 interface ClientBuilderInterface
 {
-    public function default(): ClientInterface;
+    public function default(): Client;
 
-    public function connection(string $name): ClientInterface;
+    public function connection(string $name): Client;
 }
