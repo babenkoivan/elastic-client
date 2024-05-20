@@ -6,10 +6,9 @@ use Elastic\Client\ClientBuilder;
 use Elastic\Elasticsearch\ClientInterface;
 use ErrorException;
 use Orchestra\Testbench\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \Elastic\Client\ClientBuilder
- */
+#[CoversClass(ClientBuilder::class)]
 final class ClientBuilderTest extends TestCase
 {
     private ClientBuilder $clientBuilder;

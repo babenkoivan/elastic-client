@@ -2,12 +2,16 @@
 
 namespace Elastic\Client;
 
+use Elastic\Elasticsearch\Client;
 use Elastic\Elasticsearch\ClientBuilder as BaseClientBuilder;
 use Elastic\Elasticsearch\ClientInterface;
 use ErrorException;
 
 class ClientBuilder implements ClientBuilderInterface
 {
+    /**
+     * @var array<string, Client>
+     */
     protected array $cache;
 
     public function default(): ClientInterface
