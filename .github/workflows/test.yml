@@ -14,10 +14,10 @@ jobs:
             phpunit: 11.0
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout
 
       - name: Install php and composer
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php
         with:
           php-version: ${{ matrix.php }}
           coverage: none
@@ -28,7 +28,7 @@ jobs:
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
 
       - name: Restore composer cache
-        uses: actions/cache@v2
+        uses: actions/cache
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
