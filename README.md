@@ -28,7 +28,7 @@ The official PHP Elasticsearch client integrated with Laravel.
 The current version of Elastic Client has been tested with the following configuration:
 
 * PHP 8.2
-* Elasticsearch 8.x 
+* Elasticsearch 9.x 
 * Laravel 11.x
 
 If your project uses older Laravel (or PHP) version check [the previous major version](https://github.com/babenkoivan/elastic-client/tree/v2.1.0#compatibility) of the package.
