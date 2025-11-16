@@ -31,7 +31,7 @@ The current version of Elastic Client has been tested with the following configu
 * Elasticsearch 9.x 
 * Laravel 12.x
 
-If your project uses older Elasticsearch, Laravel, or PHP version check [the previous major version](https://github.com/babenkoivan/elastic-client/tree/v3.1.0#compatibility) of the package.
+If your project uses older Elasticsearch, Laravel, or PHP version check [the previous major version](https://github.com/babenkoivan/elastic-client/tree/v3.1.1#compatibility) of the package.
 
 ## Installation
 
